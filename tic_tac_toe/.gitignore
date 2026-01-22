@@ -1,0 +1,10 @@
+# Compiled executable
+tic_tac_toe
+
+# Object files
+*.o
+*.obj
+
+# Temporary files
+*~
+*.swp
