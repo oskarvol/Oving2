@@ -110,13 +110,17 @@ int main() {
         printf("Player %c's turn\n", current_player);
         printf("Enter row (1-3): ");
         if (scanf("%d", &row) != 1) {
-            printf("\nInvalid input! Exiting game.\n");
-            break;
+            // Clear input buffer on invalid input
+            while (getchar() != '\n');
+            printf("\nInvalid input! Please enter a number.\n");
+            continue;
         }
         printf("Enter column (1-3): ");
         if (scanf("%d", &col) != 1) {
-            printf("\nInvalid input! Exiting game.\n");
-            break;
+            // Clear input buffer on invalid input
+            while (getchar() != '\n');
+            printf("\nInvalid input! Please enter a number.\n");
+            continue;
         }
         
         // Convert to 0-indexed
@@ -124,7 +128,11 @@ int main() {
         col--;
         
         if (!is_valid_move(row, col)) {
-            printf("\nInvalid move! Try again.\n");
+            if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE) {
+                printf("\nPosition out of bounds! Please enter numbers between 1 and 3.\n");
+            } else {
+                printf("\nPosition already occupied! Please choose an empty spot.\n");
+            }
             continue;
         }
         
